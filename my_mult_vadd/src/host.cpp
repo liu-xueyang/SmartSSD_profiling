@@ -34,7 +34,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **********/
 #include "xcl2.hpp"
 #include <vector>
-#include "../../../common/includes/timer.hpp"
+#include "../timer.hpp"
 
 #define DATA_SIZE 1024*1024*64
 #define INCR_VALUE 10

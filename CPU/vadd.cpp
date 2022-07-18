@@ -13,7 +13,7 @@
 
 #include "../timer.hpp"
 
-#define FILENAME "/mnt/temp/vadd.txt"
+#define FILENAME "/home/xueyang.liu/vadd.txt"
  
 int main(int argc, char* argv[])
 {
@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
         oFile.close();
     }
     else {
-        std::cout << "Unable to open file" << std::endl;
+        std::cout << "Unable to open file, please check your sudo permission since the file is SSD" << std::endl;
         return 0;
     }
     
@@ -62,7 +62,6 @@ int main(int argc, char* argv[])
     iFile.close();
     t_SSD2CPU = timer.elapsed();
     std::cout << "data copy elapsed time = " << t_SSD2CPU << std::endl;
-    // printf("%d",t_SSD2CPU);
 
     // Execute vector add in parallel
     timer.reset();
@@ -89,7 +88,7 @@ int main(int argc, char* argv[])
     // write output results
     oFile.open(FILENAME, std::ios::trunc | std::ios::binary);
     timer.reset();
-    oFile.write(reinterpret_cast<char *>(&h_C[0]), size);
+    oFile.write(reinterpret_cast<char *>(&h_C[0]), size); // do I need to flush this to SSD
     t_CPU2SSD = timer.elapsed();
     std::cout << "CPU to SSD data transfer elapsed time = " << t_CPU2SSD << std::endl;
 
