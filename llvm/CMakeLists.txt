@@ -34,14 +34,14 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall\
     -fdiagnostics-color=always -Wno-everything")
 
 
-# include_directories("include")
+include_directories("include")
 include_directories("src")
 
-# file(GLOB HEADERS "include/*.hh")
+file(GLOB HEADERS "include/*.h")
 file(GLOB SOURCES "src/*.cpp")
 
 add_library(ddg MODULE
-    # ${HEADERS}
+    ${HEADERS}
     ${SOURCES}
 )
 
