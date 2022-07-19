@@ -45,7 +45,7 @@ add_library(ddg MODULE
     ${SOURCES}
 )
 
-add_library(ddg_shared STATIC ${SOURCES})
+# add_library(ddg_shared STATIC ${SOURCES})
 
 #
 # Turn on C++11, turn off C++ RTTI.
