@@ -38,7 +38,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #define DATA_SIZE 1024*1024*64
 #define INCR_VALUE 1.125
-#define NUM_INSTANCE 4
+#define NUM_INSTANCE 8
 // define internal buffer max size
 #define BURSTBUFFERSIZE 256
 #define OUT_FILENAME "profile_multiple.csv"
@@ -167,8 +167,6 @@ int main(int argc, char **argv) {
     }
   }
 
-  // std::ofstream myfile;
-  // myfile.open (OUT_FILENAME);
   std::fstream myfile(OUT_FILENAME, std::fstream::out | std::fstream::app);
   myfile << NUM_INSTANCE << "," << DATA_SIZE/1024/1024 << "," <<  t_CPU2Device << "," << t_Device << "," << t_Device2CPU << "\n";
   myfile.close();

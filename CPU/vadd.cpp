@@ -13,13 +13,16 @@
 
 #include "../timer.hpp"
 
-#define FILENAME "/home/xueyang.liu/vadd.txt"
+#define NUM_THREADS 8
+#define VEC_SIZE 1024 * 1024 *512
+#define FILENAME "/mnt/temp/vadd.txt"
+#define OUT_FILENAME "profile.csv"
  
 int main(int argc, char* argv[])
 {
-    int numElements = 1024 * 1024 *512;
+    int numElements = VEC_SIZE;
     size_t size = numElements * sizeof(int);
-    int numThreads = 8; 
+    int numThreads = NUM_THREADS; 
     int ops_per_thread = numElements / numThreads + 1;
     Timer timer;
     int t_SSD2CPU, t_CPU, t_CPU2SSD;
@@ -91,5 +94,9 @@ int main(int argc, char* argv[])
     oFile.write(reinterpret_cast<char *>(&h_C[0]), size); // do I need to flush this to SSD
     t_CPU2SSD = timer.elapsed();
     std::cout << "CPU to SSD data transfer elapsed time = " << t_CPU2SSD << std::endl;
+
+    std::fstream myfile(OUT_FILENAME, std::fstream::out | std::fstream::app);
+    myfile << NUM_THREADS << "," << VEC_SIZE/1024/1024 << "," <<  t_SSD2CPU << "," << t_CPU << "," << t_CPU2SSD << "\n";
+    myfile.close();
 
 }

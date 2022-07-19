@@ -1,0 +1,7 @@
+*.log
+_x.hw*
+_x.sw_emu*
+.run
+.Xil
+build_dir*
+.vscode
